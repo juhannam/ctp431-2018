@@ -1,0 +1,41 @@
+<html>
+
+<head>
+	<title> Hello, Sine!</title>
+</head>
+
+
+<body>
+
+	<h1> Hello, Sine! </h1>
+  	<button onclick="playsound()"> play </button>  
+  	<button onclick="stopsound()"> stop </button>  
+
+	<script>
+	window.AudioContext = window.AudioContext || window.webkitAudioContext;
+	var context = new AudioContext();
+
+	// create
+	var oscillator = context.createOscillator();
+
+	// control
+	oscillator.type = 'sine'; 
+	oscillator.frequency.value = 440; 
+
+	oscillator.start(0);
+
+	// connect
+	function playsound()
+	{
+	  oscillator.connect(context.destination);
+	}
+
+	function stopsound()
+	{
+	  oscillator.disconnect();
+	}
+	
+	</script>
+</body>
+
+</html>

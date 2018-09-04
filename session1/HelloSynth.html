@@ -1,0 +1,94 @@
+<html>
+
+<head>
+	<title> Hello, Sine!</title>
+</head>
+
+
+<body>
+
+	<h1> Hello, Synth! </h1>
+ 	<button onclick="playsound()"> play </button>  
+ 	<button onclick="stopsound()"> stop </button>  
+ 	<br>
+ 	<br>
+ 	<p> Fundamental Frequency (Pitch) </p>
+	<input id="oscFrequencySlider" title="Frequency" type="range" min="100" max="4000" value="440" step=1>
+	<span id="oscFrequencySliderValue"> </span>
+	<br>
+ 	<p> Filter Frequency (Brightness) </p>
+	<input id="filterFrequencySlider" title="Frequency" type="range" min="100" max="4000" value="100" step=1>
+	<span id="filterFrequencySliderValue"> </span>
+	<script>
+
+	window.onload=function(){
+		var freqSlider = document.getElementById("oscFrequencySlider");
+		freqSlider.addEventListener("change", changeOscFreq, false);
+
+		var freqSlider_value = document.getElementById("oscFrequencySliderValue");
+		freqSlider_value.innerHTML = freqSlider.value + ' Hz';
+
+
+		var freqSlider2 = document.getElementById("filterFrequencySlider");
+		freqSlider2.addEventListener("change", changefilterFreq, false);
+
+		var freqSlider_value2 = document.getElementById("filterFrequencySliderValue");
+		freqSlider_value2.innerHTML = freqSlider2.value + ' Hz';
+
+	}
+
+	function changeOscFreq(e){
+		var oscFreq = e.target.value;		
+		oscillator.frequency.value = oscFreq;
+
+		var freqSlider_value = document.getElementById("oscFrequencySliderValue");
+		freqSlider_value.innerHTML = oscFreq + ' Hz';
+	}
+
+	function changefilterFreq(e){
+		var filterFreq = e.target.value;		
+		filter.frequency.value = filterFreq;
+
+		var freqSlider_value = document.getElementById("filterFrequencySliderValue");
+		freqSlider_value.innerHTML = filterFreq + ' Hz';
+	}
+
+
+	window.AudioContext = window.AudioContext || window.webkitAudioContext;
+	var context = new AudioContext();
+
+	// create
+	var oscillator = context.createOscillator();
+	var filter = context.createBiquadFilter();
+	var amp = context.createGain();
+
+	// connect
+	oscillator.connect(filter);
+	filter.connect(amp);
+
+	// control
+	oscillator.type = 'square'; 
+	oscillator.frequency.value = 440; 
+
+	filter.frequency.value = 1000;
+	filter.Q.value = 10;
+
+	amp.gain.value = 1;
+
+	oscillator.start(0);
+
+	// connect
+	function playsound()
+	{
+	  amp.connect(context.destination);
+	}
+
+	function stopsound()
+	{
+	  amp.disconnect();
+	}
+	
+	</script>
+</body>
+
+</html>

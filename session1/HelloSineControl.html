@@ -1,0 +1,63 @@
+<html>
+
+<head>
+	<title> Hello, Sine!</title>
+</head>
+
+
+<body>
+
+	<h1> Hello, Sine! </h1>
+	<p> With pitch change </p>
+ 	<button onclick="playsound()"> play </button>  
+ 	<button onclick="stopsound()"> stop </button>  
+ 	<br>
+ 	<br>
+ 	<br>
+ 	<input id="oscFrequencySlider" title="Frequency" type="range" min="100" max="44100" value="440" step=1>
+	<span id="oscFrequencySliderValue"> </span>
+	<script>
+
+	window.onload=function(){
+		var freqSlider = document.getElementById("oscFrequencySlider");
+		freqSlider.addEventListener("change", changeOscFreq, false);
+
+		var freqSlider_value = document.getElementById("oscFrequencySliderValue");
+		freqSlider_value.innerHTML = freqSlider.value + ' Hz';
+	}
+
+	function changeOscFreq(e){
+		var oscFreq = e.target.value;		
+		oscillator.frequency.value = oscFreq;
+
+		var freqSlider_value = document.getElementById("oscFrequencySliderValue");
+		freqSlider_value.innerHTML = oscFreq + ' Hz';
+	}
+
+	window.AudioContext = window.AudioContext || window.webkitAudioContext;
+	var context = new AudioContext();
+
+	// create
+	var oscillator = context.createOscillator();
+
+	// control
+	oscillator.type = 'sine'; 
+	oscillator.frequency.value = 440; 
+
+	oscillator.start(0);
+
+	// connect
+	function playsound()
+	{
+	  oscillator.connect(context.destination);
+	}
+
+	function stopsound()
+	{
+	  oscillator.disconnect();
+	}
+	
+	</script>
+</body>
+
+</html>
