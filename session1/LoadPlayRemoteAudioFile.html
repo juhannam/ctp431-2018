@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title> Hello, Sample Play from Server</title>
+</head>
+<body>		
+	<h1> Load and Play Audio Files on the Server </h1>
+	<p>Open an audio file from the server side and play/stop it by clicking the buttons.</p>
+	<button onclick="loadSound(url)">Load</button>
+	<button onclick="playSound(myAudioBuffer)">Play</button>
+	<button onclick="stopSound()">Stop</button>
+	  
+	<script>
+	window.AudioContext = window.AudioContext || window.webkitAudioContext;
+	var context = new AudioContext;
+	var myAudioBuffer = null;
+
+	var url = "./a_foolish_game.mp3";
+
+	function loadSound(url) {
+	  var request = new XMLHttpRequest();
+	  request.open('GET', url, true);
+	  request.responseType = 'arraybuffer';
+	  request.onload = function() {
+	    console.log(url + " has been loaded.")
+	    context.decodeAudioData(request.response, function(buffer) {
+	    	myAudioBuffer = buffer;
+	    	console.log(url + " has been decoded.")	    
+	    });
+	  }
+	  request.send();
+	}
+ 
+	var source = null;
+
+	function playSound(anybuffer) {
+	  source = context.createBufferSource();
+	  source.buffer = anybuffer;
+	  source.connect(context.destination);
+	  source.start();
+	}
+ 
+	function stopSound() {
+	  if (source) {
+	    source.stop();
+	  }
+	}
+	</script>
+</body>
+</html>
