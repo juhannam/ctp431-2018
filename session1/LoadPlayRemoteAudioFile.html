@@ -11,7 +11,8 @@
 	<button onclick="loadSound(url)">Load</button>
 	<button onclick="playSound(myAudioBuffer)">Play</button>
 	<button onclick="stopSound()">Stop</button>
-	  
+	<p id="fileLoadIndicator"> </p>
+
 	<script>
 	window.AudioContext = window.AudioContext || window.webkitAudioContext;
 	var context = new AudioContext;
@@ -27,7 +28,10 @@
 	    console.log(url + " has been loaded.")
 	    context.decodeAudioData(request.response, function(buffer) {
 	    	myAudioBuffer = buffer;
-	    	console.log(url + " has been decoded.")	    
+	    	console.log(url + " has been decoded.")
+
+	    	var result = document.getElementById("fileLoadIndicator");
+			result.innerHTML = 'Loaded';
 	    });
 	  }
 	  request.send();
