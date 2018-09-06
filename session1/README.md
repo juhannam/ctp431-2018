@@ -12,6 +12,6 @@ SineControl!](https://rawgit.com/juhannam/ctp431-2018/master/session1/HelloSineC
 [Example \#3: Hello,
 Synth!](https://rawgit.com/juhannam/ctp431-2018/master/session1/HelloSynth.html)
 
-[Example \#4: Loading and playing audio files on the client side](https://rawgit.com/juhannam/ctp431-2018/master/session2/LoadPlayLocalAudioFile.html)
+[Example \#4: Loading and playing audio files on the client side](https://rawgit.com/juhannam/ctp431-2018/master/session1/LoadPlayLocalAudioFile.html)
 
-[Example \#5: Loading and playing audio files on the server side](https://rawgit.com/juhannam/ctp431-2018/master/session2/LoadPlayRemoteAudioFile.html)
+[Example \#5: Loading and playing audio files on the server side](https://rawgit.com/juhannam/ctp431-2018/master/session1/LoadPlayRemoteAudioFile.html)
