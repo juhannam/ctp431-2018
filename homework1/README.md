@@ -27,9 +27,8 @@ Extend the starter code by
 - (Optional) Decorating the GUI with text or visual components 
 
 
-## Step #4
-Create your own homepage for this course and submit the code to it. I recommend you to use [Github Pages](https://pages.github.com/).
-
+## Deliverables
+Make your own webpage using [Github Pages](https://pages.github.com/) and upload your code in https://username.github.io/ctp431/hw1/ so that we can run it with the URL. We will keep using your Github webpage for your homework and final project.   
 
 
 ### Tips for coding
