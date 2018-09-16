@@ -1,4 +1,4 @@
-Session \#1 Basics of Web Audio API
+Session \#1: Basics of Web Audio API
 ===================================
 
 Click the following links to run web audio examples.
