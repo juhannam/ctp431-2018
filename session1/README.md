@@ -1,5 +1,5 @@
-Session \#1
-===========
+Session \#1 Basics of Web Audio
+===============================
 
 Click the following links to run web audio examples.
 

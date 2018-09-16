@@ -1,5 +1,5 @@
-Session \#3
-===========
+Session \#2: Sound Visualization
+================================
 
 You can run the web audio examples from the following links.
 
