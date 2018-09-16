@@ -1,0 +1,175 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title> Audio Visualization</title>
+</head>
+<body>		
+	<h1> Visualize Spectrum </h1>
+	<p>Web audio API example: visulizes the spectrum of audio files while playing.</p>
+	
+	<input id="fileChooseInput" type="file"></input>
+	<button onclick="playSound(myAudioBuffer)">Play</button>
+	<button onclick="stopSound()">Stop</button>	  
+	<button id='freeze_button' onclick="toggleFreezeAnimation()">Freeze</button>	  
+
+	<p><canvas id='spec_view' style="background: white;"></canvas></p>
+
+	<script>	
+	var context;
+	var myAudioBuffer = null;
+	var analyser;
+	
+	var spec_view;
+	var WIDTH = 1024;
+	var HEIGHT = 512;
+
+	var freeze_status = false;
+
+	window.requestAnimationFrame(draw_spec);
+
+	//
+	window.onload=function(){
+		// file open button
+		var control = document.getElementById("fileChooseInput");
+		control.addEventListener("change", fileChanged, false);
+		
+		// canvas 
+		spec_view = document.getElementById("spec_view");
+		spec_view.width =  WIDTH;
+		spec_view.height = HEIGHT;	
+		
+		// create audio context
+		window.AudioContext = window.AudioContext || window.webkitAudioContext;
+		context = new AudioContext();
+		
+		// analyzer
+	    analyser = context.createAnalyser();
+	    analyser.fftSize = 2048;
+		analyser.smoothingTimeConstant = 0;
+	}
+	
+
+	function draw_spec() {
+		// 2d canvas context
+		var drawContext = spec_view.getContext('2d');
+		
+		// fill rectangular
+		drawContext.fillStyle = 'rgb(237, 214, 81)';
+		drawContext.fillRect(0, 0, WIDTH, HEIGHT);
+
+
+		// drawing line setting
+		drawContext.lineWidth = 2;
+		drawContext.strokeStyle = 'rgb(0, 0, 0)';
+		drawContext.beginPath();
+
+
+		// get samples 
+		var dataArray = new Uint8Array(analyser.frequencyBinCount);
+		analyser.getByteFrequencyData(dataArray);
+		
+		var sliceWidth = WIDTH * 1.0 / dataArray.length;
+		var x = 0;
+		
+		for (var i = 0; i < dataArray.length; i++) {
+	        var v = dataArray[i] / 256.0;
+	        var y = HEIGHT - v * HEIGHT;
+
+	    	if(i === 0) {
+	        	drawContext.moveTo(x, y);
+	        } else {
+	        	drawContext.lineTo(x, y);
+	        }
+
+	        x += sliceWidth;
+		}
+		
+		// last touch
+		drawContext.lineTo(draw_spec.width, draw_spec.height/2);
+		drawContext.stroke();
+
+/*
+		// get samples 
+		var dataArray = new Uint8Array(analyser.frequencyBinCount);
+		analyser.getByteFrequencyData(dataArray);
+		
+		
+		var barWidth = (WIDTH / dataArray.length) * 1;
+		var barHeight;
+		var x = 0;	
+		
+		for(var i = 0; i < dataArray.length; i++) {
+			barHeight = dataArray[i]/256.0*HEIGHT;
+
+			drawContext.fillStyle = 'rgb(104,68,201)';
+			drawContext.fillRect(x, HEIGHT-barHeight, barWidth+1, barHeight);
+			x += barWidth + 1;
+			
+			if (x > WIDTH)
+				break;
+		}
+*/
+
+		// queue for next callback
+		if ( freeze_status == false ) {
+			window.requestAnimationFrame(draw_spec);
+		}
+	}
+	
+
+	function fileChanged(e){
+		var file = e.target.files[0];
+		var fileReader = new FileReader();
+		fileReader.onload = fileLoaded;
+		fileReader.readAsArrayBuffer(file);
+	}
+
+	function fileLoaded(e){
+	    context.decodeAudioData(e.target.result, function(buffer) {
+	      myAudioBuffer = buffer;
+	    });
+	}
+
+	var source = null;
+	function playSound(anybuffer) {
+	  source = context.createBufferSource();
+	  source.buffer = anybuffer;
+	  source.connect(context.destination);
+	  
+	  // connect source to analyser
+	  source.connect(analyser);
+	  
+	  source.start();
+	  
+	  if (freeze_status == true) {
+	  	toggleFreezeAnimation();		
+	  }	  
+	  
+	  // visualize audio
+	  draw_spec();
+	}
+
+	function stopSound() {
+	  if (source) {
+	    source.stop();
+	  }
+	}	   	
+	
+	function toggleFreezeAnimation() {
+		if (freeze_status == true) {
+			freeze_status = false;
+			window.requestAnimationFrame(draw_spec);			
+			var freeze_button = document.getElementById("freeze_button");
+			freeze_button.innerHTML = 'freeze';
+		}
+		else {
+			freeze_status = true;
+			var freeze_button = document.getElementById("freeze_button");
+			freeze_button.innerHTML = 'unfreeze';
+		}
+	}
+
+	</script>
+</body>
+</html>

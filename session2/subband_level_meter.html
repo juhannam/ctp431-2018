@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title> Audio Visualization </title>
+	<script type="text/javascript" src="./subband_level_meter.js"></script>
+	<script type="text/javascript" src="./octave_band.js"></script>
+	<script type="text/javascript" src="./hsv2rgb.js"></script>
+</head>
+<body>		
+	<h1>Music Visualizer: Sub-band Level Meter </h1>
+	<button id="demoAudio"> Demo Audio Play </button>
+	<button id="micInput"> Mic On </button> 
+	<p><canvas id='loudnessView' style="background: black;"></canvas></p>
+
+	<br>
+  	<input id="visMode1" type="radio" name="mode" value="10-Band Level Meter" checked="checked"> 10-Band Level Meter
+  	<input id="visMode2" type="radio" name="mode" value="other"> My Own Style
+
+	<p id='loudnessValue'> </p>
+
+	</body>
+</html>

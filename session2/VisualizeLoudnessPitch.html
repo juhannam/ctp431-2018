@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title> Audio Feature Extraction </title>
+	<script type="text/javascript" src="./VisualizeLoudnessPitch.js"></script>
+	<script type="text/javascript" src="./loudness.js"></script>
+	<script type="text/javascript" src="./pitch_detection.js"></script>
+</head>
+<body>		
+	<button id="demoAudio"> Demo Audio Play </button>
+	<button id="micInput"> Mic On </button>
+
+	<table>
+		<tr>
+		<th> <h2>Loudness </h2> </th> 
+		<th> <h2>Pitch </h2></th> 
+		</tr> 
+
+		<tr> 
+		<td valign="top">
+			<p><canvas id='loudnessView' style="background: black;"></canvas></p>
+			<p id='loudnessValue'> </p>
+		</td>
+		<td valign="top">
+			<p><canvas id='pitchView' style="background: black;"></canvas></p>
+			<p id='pitchValue'> </p>
+			<p id='pitchPeriodicity'> </p>
+		</td>
+		</tr>
+	</table>
+</body>
+</html>
