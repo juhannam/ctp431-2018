@@ -1,0 +1,60 @@
+button {
+    padding: 5px;
+    background: rgb(200, 200, 200);
+    border: 1px solid rgb(122, 122, 122);
+    border-radius: 5px;
+    outline: none;
+    width:120px;
+    height:120px;
+    font-size:15px
+}
+
+input[type='range'] {
+    overflow: hidden;
+    width: auto;
+    -webkit-appearance: none;
+    background-color: #9a905d;
+}
+
+input[type='range']::-webkit-slider-runnable-track {
+    height: 30px;
+    -webkit-appearance: none;
+    color: #13bba4;
+    margin-top: -1px;
+}
+
+input[type='range']::-webkit-slider-thumb {
+    width: 0px;
+    -webkit-appearance: none;
+    cursor: ew-resize;
+    background: #434343;
+    box-shadow: -80px 0 0 80px red;
+}
+
+button.active, button:active {
+    background: rgb(100, 100, 100);
+    border: 1px solid rgb(0,0,0);
+    box-shadow: 0 0 2px 0 rgb(0,0,0);
+}
+
+div#kick{
+    float:left;
+    margin: 0 5px 0 5px;
+}
+#snare{
+    float:left;
+    margin: 0 5px 0 5px;
+}
+#hihat{
+    float:left;
+    margin: 0 5px 0 5px;
+}
+#sine{
+    float:left;
+    margin: 0 5px 0 5px;
+}
+
+input.volume input.pitch input.brightness{
+    width:120px;
+    height:10px;
+}
