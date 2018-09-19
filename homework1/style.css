@@ -21,11 +21,12 @@ button.drum {
   display: block;
 }
 
-button.drum.active {
+button.drum.active, button.drum:active {
   background: #2c3e50;
   border-color: 4px solid #fff200;
   box-shadow: 0px -10px 20px rgba(255, 250, 101, 0.2);
 }
+
 
 button.oscilator {
   border-color: #ffcccc;
