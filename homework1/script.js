@@ -172,7 +172,7 @@ function keyboardDown(key) {
     case 76: //'l'
       pad = document.getElementById("hihatPad");
       break;
-    case 65: //'d'
+    case 68: //'d'
       pad = document.getElementById("revKickPad");
       break;
     case 70: //'f'
@@ -205,7 +205,7 @@ function keyboardUp(key) {
       var hihatpad = document.getElementById("hihatPad");
       hihatpad.className = "drum";
       break;
-    case 65: //'d'
+    case 68: //'d'
       var revKickPad = document.getElementById("revKickPad");
       revKickPad.className = "drum";
       break;
