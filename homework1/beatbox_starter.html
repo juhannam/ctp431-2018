@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:500,700" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <title> Beatbox</title>
@@ -16,17 +17,17 @@
         <div class="row">
             <div class="col-md-10 offset-md-2">
                 <div id="kick" align="center">
-                    <button id="kickPad" class="border border-warning" onmousedown="playdrum(0)"> Kick ('a' key)</button>
+                    <button class="drum" id="kickPad" onmousedown="playdrum(0)"> Kick ('a' key)</button>
                     <p id="kickVolLabel"></p>
                     <input class="volume" onchange="changegain(0,this.value)" id="kickVol" title="Kick volume" type="range" min="-24" max="0" value="-12">
                 </div>
                 <div id="snare" align="center">
-                    <button id="snarePad" class="border border-warning" onmousedown="playdrum(1)"> Snare ('s' key)</button>
+                    <button class="drum" id="snarePad" onmousedown="playdrum(1)"> Snare ('s' key)</button>
                     <p id="snareVolLabel"></p>
                     <input class="volume" onchange="changegain(1,this.value)" id="snareVol" title="Snare volume" type="range" min="-24" max="0" value="-12">
                 </div>
                 <div id="hihat" align="center">
-                    <button id="hihatPad" class="border border-warning" onmousedown="playdrum(2)"> Hihat ('l' key)</button>
+                    <button class="drum" id="hihatPad" onmousedown="playdrum(2)"> Hihat ('l' key)</button>
                     <p id="hihatVolLabel"></p>
                     <input class="volume" onchange="changegain(2,this.value)" id="hihatVol" title="Hihat volume" type="range" min="-24" max="0" value="-12">
                 </div>
@@ -35,19 +36,33 @@
         <div class="row">
             <div class="col-md-10 offset-md-2">
                 <div id="sine" align="center">
-                    <button id="sinePad" class="border border-warning" onmousedown="togglesound(0)">Sine</button>
+                    <button class="oscilator" id="sinePad" onmousedown="togglesound(0)">Sine</button>
                     <p id="sineVolLabel"></p>
-                    V <input class="volume" onchange="changegain(3,this.value)" oninput="volumeOutputId.value = this.value" id="sineVol" title="Sine volume" type="range" min="-24" max="0" value="-12"><output name="ageOutputName" id="volumeOutputId">24</output>
+                    <input class="volume" onchange="changegain(3,this.value)" oninput="volumeOutputId.value = this.value" id="sineVol" title="Sine volume" type="range" min="-24" max="0" value="-12"><output name="ageOutputName" id="volumeOutputId"></output>
  	                  <p> P <span id="oscFrequencySliderValue"> </span> </p>
 	                  <input class="pitch"  onchange="changeOscFreq(0,this.value)" id="oscFrequencySlider" title="Frequency" type="range" min="100" max="4000" value="440" step=1>
  	                  <p> B <span id="filterFrequencySliderValue"> </span> </p>
 	                  <input class="brightness" onchange="changeFilterFreq(0,this.value)" id="filterFrequencySlider" title="Frequency" type="range" min="100" max="4000" value="100" step=1>
                 </div>
+<!--                 <div id="sample" align="center">
+                    <button id="samplePad" onmousedown="togglesound(1)">Sine</button>
+                    <p id="sampleVolLabel"></p>
+                    V <input class="volume" onchange="changegain(4,this.value)" oninput="volumeOutputId.value = this.value" id="sampleVol" title="Sine volume" type="range" min="-24" max="0" value="-12"><output name="ageOutputName" id="volumeOutputId">24</output>
+                </div> -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 offset-md-2">
+                <div id="reverb" align="center">
+                    <button class="filter" id="reverbPad" onmousedown="playdrum(0)"> Kick ('a' key)</button>
+                    <p id="reverbVolLabel"></p>
+                    <input class="volume" onchange="changegain(0,this.value)" id="reverbVol" title="Kick volume" type="range" min="-24" max="0" value="-12">
+                </div>
             </div>
         </div>
     </div>
-
     <script src="script.js"></script>
+
 </body>
 
 </html>
