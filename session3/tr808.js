@@ -211,3 +211,81 @@ function play_rhythm()
 		snare.trigger(now + 3.5  +  i*4 );
 	}
 }	
+
+
+
+// select a preset
+window.onload=function(){
+
+	// launch MIDI 	
+	if (navigator.requestMIDIAccess)
+        navigator.requestMIDIAccess().then( onMIDIInit, onMIDIReject );
+    else
+        alert("No MIDI support present in your browser.  You're gonna have a bad time.")
+
+}
+
+
+function onMIDIInit(midi) {
+	midiAccess = midi;
+
+	var haveAtLeastOneDevice=false;
+	var inputs=midiAccess.inputs.values();
+
+	for ( var input = inputs.next(); input && !input.done; input = inputs.next()) {
+		input.value.onmidimessage = MIDIMessageEventHandler;
+		haveAtLeastOneDevice = true;
+	}
+      
+	if (!haveAtLeastOneDevice)
+		console.log("No MIDI input devices present.  You're gonna have a bad time.");
+	}
+
+
+function onMIDIReject(err) {
+	console.log("The MIDI system failed to start.  You're gonna have a bad time.");
+}
+
+
+function MIDIMessageEventHandler(event) {
+	// Mask off the lower nibble (MIDI channel, which we don't care about)
+	switch (event.data[0] & 0xf0) {
+		case 0x90:
+		if (event.data[2]!=0)   // if velocity != 0, this is a note-on message
+			//synth.noteOn(event.data[1], event.data[2]);	
+			console.log(event.data[1])
+			console.log(event.data[2])
+
+			switch (event.data[1]) {
+			case 44: // 'l'
+				play_kick();
+				break;
+			case 45: //'p'
+				play_snare();
+				break;		
+			case 46: //'q'
+				play_close_hihat();
+				break;		
+			case 47: //'w'
+				play_open_hihat();
+				break;		
+			case 48: //'a'
+				play_lowtom();
+				break;		
+			case 49: //'s'
+				play_midtom();
+				break;		
+			case 50: //'d'
+				play_hightom();
+				break;		
+			}
+
+			return;
+		
+		// if velocity == 0, fall thru: it's a note-off.  MIDI's weird, y'all.
+        case 0x80:
+			//synth.noteOff(event.data[1], event.data[2]);
+			return;
+	}
+}	
+
