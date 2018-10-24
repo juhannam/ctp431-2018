@@ -1,11 +1,22 @@
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 var context = new AudioContext();
 
+
+// select a preset
 window.onload=function(){
+
     window.addEventListener('keydown', function (key) {
         keyboardDown(key);
     });		
+
+	// launch MIDI 	
+	if (navigator.requestMIDIAccess)
+        navigator.requestMIDIAccess().then( onMIDIInit, onMIDIReject );
+    else
+        alert("No MIDI support present in your browser.  You're gonna have a bad time.")
+
 }
+
 
 function TR808Tone1(context, osc_frequency, osc_sweep, amp_gain, amp_decaytime) {
 	this.context = context;
@@ -108,6 +119,9 @@ TR808Tone2.prototype.trigger = function(time) {
 };
 
 function keyboardDown(key) {
+
+	console.log(key.keyCode);
+
 	switch (key.keyCode) {
 	case 76: // 'l'
 		play_kick();
@@ -211,19 +225,6 @@ function play_rhythm()
 		snare.trigger(now + 3.5  +  i*4 );
 	}
 }	
-
-
-
-// select a preset
-window.onload=function(){
-
-	// launch MIDI 	
-	if (navigator.requestMIDIAccess)
-        navigator.requestMIDIAccess().then( onMIDIInit, onMIDIReject );
-    else
-        alert("No MIDI support present in your browser.  You're gonna have a bad time.")
-
-}
 
 
 function onMIDIInit(midi) {
