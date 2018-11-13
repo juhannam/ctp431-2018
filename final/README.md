@@ -16,14 +16,24 @@ Find some examples that attract and inspire you. Analyze underlying ideas and te
 
 
 ## Step #2: Progress Presentation
-Prepare 7-8 minute long presentation to introduce your final project idea and report the ongoing status. 
+Prepare 7-8 minute presentation to introduce your final project idea and report the ongoing status. 
 
-- Main idea
-- Technical details: use of FFT, types of sound synthesis and digital audio efffect, types of javascript library for audio, graphics and GUI.
+- Your project idea
+- Case study examples that you find interesting
+- Necessary technical elements: types of sound synthesis and digital audio efffect, types of javascript library for audio, graphics and GUI.
 - Your plan for the final
 
 
-## Step #3: Deliverable
+## Step #3: Final Presentation
+Prepare 7-8 minute long presentation to introduce your final project. 
+
+- The main idea
+- Technical details
+- Aesthetic aspects
+- Show the demo
+
+
+## Step #4: Deliverable
 - Submit your work to https://your_id.github.io/ctp431/final.html
 - The webpage must include a one-page description that include the main idea, technical details, references and the link to your web application.
 - Have fun with it!
