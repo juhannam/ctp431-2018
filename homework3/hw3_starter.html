@@ -1,0 +1,223 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title> Homework #3: Music Synthesizer  </title>
+	<script type="text/javascript" src="NexusUI.js"></script>
+	<script type="text/javascript" src="hw3.js"></script>
+	<link  href='hw3.css' rel='stylesheet'>
+</head>
+
+<body>
+	<h1> Homework #3: Rhythm Machine </h1>
+
+	<div id="seq_label">
+	<p class="seq_Label"> Tom3 </p>
+	<p class="seq_Label"> Tom2 </p>
+	<p class="seq_Label"> Tom1 </p>
+	<p class="seq_Label"> Hi-Hat </p>
+	<p class="seq_Label"> Snare </p>
+	<p class="seq_Label"> Kick </p>
+	</div>
+	<div id="sequencer"></div>
+	<div id="transport">
+		<p class="panel_label"> Play/Stop </p>
+		<p id="play_button"> </p>
+	</div>
+	<div id="tempo">
+		<div>
+			<p class="panel_label"> Tempo (bpm)</p>
+		</div>
+		<div id="tempo_dial"></div>
+		<div id="tempo_number"></div>
+	</div>
+	<div id="filter">
+		<div>
+			<p class="panel_label"> Filter On/Off</p>
+		</div>
+		<div id="filter_onoff"></div>
+	</div>
+	<div id="filter1">
+		<div>
+			<p class="panel_label">  frequency</p>
+		</div>
+		<div id="filter_dial1"></div>
+		<div id="filter_number1"></div>
+	</div>
+	<div id="filter2">
+		<div>
+			<p class="panel_label"> resonance</p>
+		</div>
+
+		<div id="filter_dial2"></div>
+		<div id="filter_number2"></div>
+	</div>
+</body>
+
+<script>
+
+////////////////////////////////////////////////////
+// GUI 
+////////////////////////////////////////////////////
+
+// sequencer
+var sequencer = new Nexus.Sequencer('#sequencer',{
+ 'size': [800,300],
+ 'mode': 'toggle',
+ 'rows': 6,
+ 'columns': 16
+})
+sequencer.colorize("fill","#888")
+
+// initial pattern
+sequencer.matrix.set.row(3,[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]);
+sequencer.matrix.set.row(4,[0,0,0,0,1,0,0,0,0,0,1,0,0,1,0,0]);
+sequencer.matrix.set.row(5,[1,0,0,0,0,0,0,0,1,0,0,0,1,0,1,0]);
+
+
+// play/stop button
+var play_button = new Nexus.TextButton('#play_button',{
+  'size': [150,50],
+  'state': false,
+  'text': 'Play',
+  'alternate': false,
+  'alternateText': 'Stop'
+})
+
+// tempo
+var tempo_dial = new Nexus.Dial('#tempo_dial',{
+  'size': [75,75],
+  'interaction': 'radial', // "radial", "vertical", or "horizontal"
+  'mode': 'absolute', // "absolute" or "relative"
+  'min': 60,
+  'max': 180,
+  'step': 1,
+  'value': 120
+})
+
+var tempo_number = new Nexus.Number('#tempo_number',{
+  'size': [60,30],
+  'value': 120,
+  'min': 60,
+  'max': 180,
+  'step': 1
+})
+
+// link tempo dial to tempo number
+tempo_number.link(tempo_dial)
+
+
+// filter
+var filter_onoff = new Nexus.Toggle('#filter_onoff',{
+    'size': [100,20],
+    'state': false
+})
+
+var filter_dial1 = new Nexus.Dial('#filter_dial1',{
+  'size': [75,75],
+  'interaction': 'radial', // "radial", "vertical", or "horizontal"
+  'mode': 'absolute', // "absolute" or "relative"
+  'min': 100,
+  'max': 5000,
+  'step': 1,
+  'value': 1000
+})
+
+var filter_number1 = new Nexus.Number('#filter_number1',{
+  'size': [60,30],
+  'value': 100,
+  'min': 5000,
+  'max': 1,
+  'step': 1000
+})
+
+filter_number1.link(filter_dial1)
+
+var filter_dial2 = new Nexus.Dial('#filter_dial2',{
+  'size': [75,75],
+  'interaction': 'radial', // "radial", "vertical", or "horizontal"
+  'mode': 'absolute', // "absolute" or "relative"
+  'min': 1,
+  'max': 20,
+  'step': 1,
+  'value': 1
+})
+
+var filter_number2 = new Nexus.Number('#filter_number2',{
+  'size': [60,30],
+  'value': 1,
+  'min': 20,
+  'max': 1,
+  'step': 1
+})
+
+filter_number2.link(filter_dial2)
+
+
+////////////////////////////////////////////////////
+// Control 
+////////////////////////////////////////////////////
+
+// play button on/off 
+play_button.on('change',function(v) {
+	if (v == 1) {
+		sequencer.start();
+		console.log(sequencer.matrix.pattern)
+	}
+	else {
+		sequencer.stop();
+	}
+})
+
+// tempo change
+tempo_dial.on('change',function(v) {
+	// convert BPM to internal in milisecond
+	// note that 4 steps correspond to one beat in the sequencer
+	var inverval = 10;   // <-- replace this with the BPM-to-ms conversion equation
+	sequencer.interval.ms(inverval)
+})
+
+
+filter_onoff.on('change',function(v) {
+	// set_filter_onoff(v);
+})
+
+// Filter freq
+filter_dial1.on('change',function(v) {
+	// set_filter_freq(v);
+})
+
+
+// Filter freq
+filter_dial2.on('change',function(v) {
+	// set_filter_q(v);
+})
+
+
+// event-trigger
+sequencer.on('step',function(v) {
+	if (v[0] == 1) {
+		// play_kick();
+	}
+	if (v[1] == 1) {
+		// play_snare();
+	}
+	if (v[2] == 1) {
+		// play_close_hihat();
+	}
+	if (v[3] == 1) {
+		// play_lowtom();
+	}
+	if (v[4] == 1) {
+		// play_midtom();
+	}
+	if (v[5] == 1) {
+		// play_hightom();
+	}
+})
+
+</script>
+
+
+</html>

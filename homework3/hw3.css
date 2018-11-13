@@ -1,0 +1,149 @@
+button {
+    padding: 5px;
+    background: rgb(200, 200, 200);
+    border: 1px solid rgb(122, 122, 122);
+    border-radius: 2px;
+    outline: none;
+    width:120px;
+    height:120px;
+    font-size:15px
+}
+
+button.active, button:active {
+    background: rgb(100, 100, 100);
+    border: 1px solid rgb(0,0,0);
+    box-shadow: 0 0 2px 0 rgb(0,0,0);
+}
+
+p.seq_Label {
+    font-family: "Arial",Gadget, sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 20px;
+    padding: 12px;
+    margin: 5px 0px 5px 0px;
+}
+
+p.panel_label {
+    font-family: "Arial", Gadget, sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 1  0px;
+    padding: 5px;
+    margin: 5px 0px 5px 0px;
+    clear:left;
+}
+
+p.onoff{
+    margin: 10px 10px 10px 10px;
+    float:left;
+}
+
+p.dial{
+    margin: 10px 10px 10px 20px;
+    float:left;
+}
+p.number{
+    margin: 10px 10px 10px 80px;
+    float:left;
+}
+
+#seq_label{
+    padding:10px;
+    background: rgb(220, 220, 220);
+    width:80px;
+    height:300px;
+    float:left;
+}
+#sequencer{
+    padding:10px;
+    background: rgb(120, 120, 120);
+    float:left;
+}
+#transport{
+    padding:10px;
+    margin: 5px 0px 0px 0px;
+    background: rgb(220, 220, 220);
+    width:200px;
+    height:150px;
+    clear:left;
+    float:left;
+}
+
+#play_button{
+    margin: 20px 10px 10px 20px;
+    float:left;
+}
+
+#tempo{
+    padding:10px;
+    margin: 5px 0px 0px 5px;
+    background: rgb(220, 220, 220);
+    width:200px;
+    height:150px;
+    float:left;
+}
+
+#tempo_dial{
+    margin: 5px 0px 0px 55px;
+    clear:left;
+}
+
+#tempo_number{
+    margin: 5px 0px 0px 60px;
+    clear:left;
+}
+
+#filter{
+    padding:10px;
+    margin: 5px 0px 0px 5px;
+    background: rgb(220, 220, 220);
+    width:130px;
+    height:150px;
+    float:left;
+}
+
+#filter1{
+    padding:10px;
+    margin: 5px 0px 0px 0px;
+    background: rgb(220, 220, 220);
+    width:140px;
+    height:150px;
+    float:left;
+}
+
+#filter2{
+    padding:10px;
+    margin: 5px 0px 0px 0px;
+    background: rgb(220, 220, 220);
+    width:140px;
+    height:150px;
+    float:left;
+}
+
+#filter_dial1{
+    margin: 5px 0px 0px 10px;
+    clear:left;
+}
+
+#filter_number1{
+    margin: 5px 0px 0px 15px;
+    clear:left;
+}
+
+
+#filter_dial2{
+    margin: 5px 0px 0px 10px;
+    clear:left;
+}
+
+
+#filter_number2{
+    margin: 5px 0px 0px 15px;
+    clear:left;
+}
+
