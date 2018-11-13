@@ -6,24 +6,26 @@ Your mission for the final project is making your own music web application. Her
 There are numerous web-based music applications that people have created. Here are some recommended resources. 
 
 - [Chris Lowis's Web Audio Weekly](http://www.webaudioweekly.com/) (This is particularly nice!)
+- [Awesome Audio Visualization](https://github.com/willianjusten/awesome-audio-visualization)
 - [Tone.js Demo](https://tonejs.github.io/demos)
 - [Chrome Music Lab](https://musiclab.chromeexperiments.com/)
-- [Awesome Audio Visualization](https://github.com/willianjusten/awesome-audio-visualization)
+- [Google Magenta Demo](https://magenta.tensorflow.org/demos)
+
 
 Find some examples that attract and inspire you. Analyze underlying ideas and techniques. Also, think about the feasibility if you make something similar. 
 
 
-## Step #2: Case study presentation
-Prepare 5-7 minute long presentation to introduce your favorite examples. It should include:
+## Step #2: Progress Presentation
+Prepare 7-8 minute long presentation to introduce your final project idea and report the ongoing status. 
 
 - Main idea
-- Technical details: e.g. use of FFT, types of sound synthesis and digital audio efffect, graphic library, user interaction 
-- Your plan for the final (you don't necessarily have to make strong connections to the case study)
+- Technical details: use of FFT, types of sound synthesis and digital audio efffect, types of javascript library for audio, graphics and GUI.
+- Your plan for the final
 
 
 ## Step #3: Deliverable
 - Submit your work to https://your_id.github.io/ctp431/final.html
-- The webpage must include descriptions on the main idea and technical details (just as you did for the case study).
+- The webpage must include a one-page description that include the main idea, technical details, references and the link to your web application.
 - Have fun with it!
 
 
