@@ -36,8 +36,8 @@ Prepare 7-8 minute long presentation to introduce your final project.
 ## Step #4: Deliverable
 - Submit your work to https://your_id.github.io/ctp431/final.html
 - The webpage must include the following:
--- The writing part: introduction, main ideas, technical details and references 
--- A HTML link to your web application
+-- Writing part: introduction, main ideas, technical details and references 
+-- HTML link to your web application
 -- Demo video: record the working demo video and embed it in your webpage via [Youtube](https://youtube.com), [Vimeo](https://vimeo.com/) or file sharing platforms (e.g. Google Drive).   
 - Complete the webpage and demo video due to Dec 16
 - Have fun with it!
