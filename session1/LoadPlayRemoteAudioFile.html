@@ -40,16 +40,20 @@
 	var source = null;
 
 	function playSound(anybuffer) {
-	  source = context.createBufferSource();
-	  source.buffer = anybuffer;
-	  source.connect(context.destination);
-	  source.start();
+		// autoplay policy
+		if (context.state === 'suspended') {
+			context.resume();
+		}
+		source = context.createBufferSource();
+		source.buffer = anybuffer;
+		source.connect(context.destination);
+		source.start();
 	}
  
 	function stopSound() {
-	  if (source) {
-	    source.stop();
-	  }
+		if (source) {
+			source.stop();
+		}
 	}
 	</script>
 </body>

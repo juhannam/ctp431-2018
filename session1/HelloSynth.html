@@ -80,12 +80,16 @@
 	// connect
 	function playsound()
 	{
-	  amp.connect(context.destination);
+		// autoplay policy
+		if (context.state === 'suspended') {
+			context.resume();
+		}
+		amp.connect(context.destination);
 	}
 
 	function stopsound()
 	{
-	  amp.disconnect();
+		amp.disconnect();
 	}
 	
 	</script>

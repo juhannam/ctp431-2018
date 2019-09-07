@@ -42,17 +42,22 @@
 	var source = null;
 
 	function playSound(anybuffer) {
-	  source = context.createBufferSource();
-	  source.buffer = anybuffer;
-	  source.connect(context.destination);
-	  //source.detune.value = 100*7;
-	  //source.playbackRate.value = 1.3;
-	  source.start(0);
+		// autoplay policy
+		if (context.state === 'suspended') {
+			context.resume();
+		}
+
+		source = context.createBufferSource();
+		source.buffer = anybuffer;
+		source.connect(context.destination);
+		//source.detune.value = 100*7;
+		//source.playbackRate.value = 1.3;
+		source.start(0);
 	}
 	function stopSound() {
-	  if (source) {
-	    source.stop();
-	  }
+		if (source) {
+			source.stop();
+		}
 	}	   	
 	</script>
 </body>

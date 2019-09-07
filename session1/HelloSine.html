@@ -23,16 +23,20 @@
 	oscillator.frequency.value = 440; 
 
 	oscillator.start(0);
-
+	  	
 	// connect
 	function playsound()
 	{
-	  oscillator.connect(context.destination);
+		// autoplay policy
+		if (context.state === 'suspended') {
+			context.resume();
+		}
+		oscillator.connect(context.destination);
 	}
 
 	function stopsound()
 	{
-	  oscillator.disconnect();
+		oscillator.disconnect();
 	}
 	
 	</script>
