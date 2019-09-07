@@ -169,6 +169,12 @@
 	function onStream(stream) {
 	    var input = context.createMediaStreamSource(stream);
 		
+
+		// autoplay policy
+		if (context.state === 'suspended') {
+			context.resume();
+		}
+
 		// Connect graph
 		input.connect(analyser);
 							  
